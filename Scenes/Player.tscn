@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://td8u1okfyyrt"]
+[gd_scene load_steps=8 format=3 uid="uid://td8u1okfyyrt"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerLocomotionController.gd" id="1_v0xoa"]
 [ext_resource type="Script" path="res://Scripts/Player/Locomotion States/PLGround.gd" id="2_gpyyp"]
 [ext_resource type="Script" path="res://Scripts/Player/Locomotion States/PLAir.gd" id="3_b8d7e"]
 [ext_resource type="Script" path="res://Scripts/Player/CameraController.gd" id="4_ga55h"]
+[ext_resource type="Texture2D" uid="uid://q5k7p2dcfw1f" path="res://Imported Assets/KenneyNL Crosshairs/crosshair019.png" id="5_mi3j4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tykb7"]
 
@@ -42,3 +43,19 @@ player_path = NodePath("..")
 
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
 current = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CenterContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("5_mi3j4")
+expand_mode = 1
+stretch_mode = 5

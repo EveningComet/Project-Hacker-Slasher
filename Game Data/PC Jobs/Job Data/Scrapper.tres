@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Job" load_steps=3 format=3 uid="uid://mnqgrbi6q8is"]
+
+[ext_resource type="Script" path="res://Scripts/Job/Job.gd" id="1_j44m3"]
+[ext_resource type="Resource" uid="uid://bk5i7whp3wlly" path="res://Game Data/PC Jobs/Job Skills/Scrapper/Scrapper Lunge.tres" id="2_me050"]
+
+[resource]
+script = ExtResource("1_j44m3")
+localization_name = "Scrapper"
+localization_description = "A class that do be."
+starting_strength = 25
+file_path_to_job_skills = "res://Game Data/PC Jobs/Job Skills/Scrapper/"
+update_attached_skills = false
+skills = Array[Resource("res://Scripts/Skills/SkillData.gd")]([ExtResource("2_me050")])

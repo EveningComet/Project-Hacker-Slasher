@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=2 format=3 uid="uid://bk5i7whp3wlly"]
+
+[ext_resource type="Script" path="res://Scripts/Skills/SkillData.gd" id="1_dcufd"]
+
+[resource]
+script = ExtResource("1_dcufd")
+localization_name = "Lunge"
+localization_description = "New description."
+is_passive = false
+tiers = Array[Resource("res://Scripts/Skills/SkillTier.gd")]([])
+is_starting_skill = false
+minimum_rank_of_previous = 0
