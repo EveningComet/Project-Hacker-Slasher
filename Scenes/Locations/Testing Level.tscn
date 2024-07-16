@@ -33,7 +33,7 @@ shadow_enabled = true
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+[node name="Floor" type="CSGBox3D" parent="CSGCombiner3D"]
 size = Vector3(500, 1, 500)
 material = SubResource("StandardMaterial3D_ma0jx")
 

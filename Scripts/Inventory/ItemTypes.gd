@@ -20,7 +20,7 @@ enum WeaponTypes
 {
 	None,
 	OneHandedMelee,
-	OneHandedAndShield,
-	Staff,
-	TwoHandedMelee
+	TwoHandedMelee,
+	OneHandedRanged,
+	TwoHandedRanged
 }
