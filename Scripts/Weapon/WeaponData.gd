@@ -7,3 +7,6 @@ class_name WeaponData extends ItemData
 
 ## A copy of the weapon in the game.
 @export var weapon_prefab: PackedScene
+
+@export_category("Firearm Related")
+@export var max_ammo: int = 120
