@@ -1,6 +1,8 @@
 ## Controls the camera for the player.
 class_name CameraController extends SpringArm3D
 
+@export var aim_cast: RayCast3D
+
 ## The node where the player is stored.
 @export var player_path: NodePath
 var target: Node3D
@@ -18,7 +20,7 @@ var wrap_max: float = 360.0
 
 func _ready() -> void:
 	set_as_top_level(true)
-	
+	aim_cast.add_exception(get_parent())
 	target = get_node(player_path)
 	add_excluded_object( target.get_rid() )
 
@@ -54,3 +56,6 @@ func apply_controller_rotation() -> void:
 		# Handle the controller's y rotation
 		rotate_y( deg_to_rad(-axis_vector.y) * controller_sensitivity )
 		rotation_degrees.y = wrapf(rotation_degrees.y, wrap_0, wrap_max)
+
+func get_camera() -> Camera3D:
+	return get_child(0)

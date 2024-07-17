@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://chwomxbfxqlaj"
+path="res://.godot/imported/Aron Krogh - Heated Battle (Loop).mp3-09f6dde9e7c0cf278330921ab8b3fb11.mp3str"
+
+[deps]
+
+source_file="res://Imported Assets/Audio/Music/Aron Krogh - Heated Battle (Loop).mp3"
+dest_files=["res://.godot/imported/Aron Krogh - Heated Battle (Loop).mp3-09f6dde9e7c0cf278330921ab8b3fb11.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=3.0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://td8u1okfyyrt"]
+[gd_scene load_steps=11 format=3 uid="uid://td8u1okfyyrt"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerLocomotionController.gd" id="1_v0xoa"]
 [ext_resource type="Script" path="res://Scripts/Player/Locomotion States/PLGround.gd" id="2_gpyyp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://q5k7p2dcfw1f" path="res://Imported Assets/KenneyNL Crosshairs/crosshair019.png" id="5_mi3j4"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerWeaponController.gd" id="6_2pjp6"]
 [ext_resource type="Script" path="res://Scripts/Components/Combatant.gd" id="7_3s4vf"]
+[ext_resource type="PackedScene" uid="uid://bvri232d45cau" path="res://Scenes/Weapons/Guns/Assault Rifle.tscn" id="8_n0lqw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tykb7"]
 
@@ -37,14 +38,18 @@ script = ExtResource("2_gpyyp")
 [node name="PLAir" type="Node" parent="PlayerLocomotionController"]
 script = ExtResource("3_b8d7e")
 
-[node name="CameraController" type="SpringArm3D" parent="."]
+[node name="CameraController" type="SpringArm3D" parent="." node_paths=PackedStringArray("aim_cast")]
 spring_length = 4.0
 margin = 0.2
 script = ExtResource("4_ga55h")
+aim_cast = NodePath("Camera3D/Aim Cast")
 player_path = NodePath("..")
 
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
 current = true
+
+[node name="Aim Cast" type="RayCast3D" parent="CameraController/Camera3D"]
+target_position = Vector3(0, 0, -1000)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -62,8 +67,15 @@ texture = ExtResource("5_mi3j4")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="PlayerWeaponController" type="Node" parent="."]
+[node name="PlayerWeaponController" type="Node" parent="." node_paths=PackedStringArray("camera_controller", "current_weapon")]
 script = ExtResource("6_2pjp6")
+camera_controller = NodePath("../CameraController")
+current_weapon = NodePath("../Weapon Holder/Assault Rifle")
 
 [node name="Combatant" type="Node" parent="."]
 script = ExtResource("7_3s4vf")
+
+[node name="Weapon Holder" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.666559, 0, 0)
+
+[node name="Assault Rifle" parent="Weapon Holder" instance=ExtResource("8_n0lqw")]
