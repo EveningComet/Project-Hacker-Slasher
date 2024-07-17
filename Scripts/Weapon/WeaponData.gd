@@ -8,6 +8,8 @@ class_name WeaponData extends ItemData
 ## A copy of the weapon's graphics.
 @export var weapon_prefab: PackedScene
 
+@export_enum("Hitscan", "Projectile", "Melee") var weapon_attack_type = "Hitscan"
+
 @export_category("Firearm Related")
 @export var max_ammo:     int = 120
 
@@ -24,8 +26,6 @@ class_name WeaponData extends ItemData
 @export var x_range: float = 1.0
 @export var y_range: float = 1.0
 
-## Does this weapon fire real projectiles or does it just use raycasts?
-@export var uses_real_projectiles: bool = false
 ## Copy of the projectile that this weapon will fire, if it uses real projectiles.
 @export var projectile_prefab: PackedScene
 

@@ -49,6 +49,7 @@ player_path = NodePath("..")
 current = true
 
 [node name="Aim Cast" type="RayCast3D" parent="CameraController/Camera3D"]
+visible = false
 target_position = Vector3(0, 0, -1000)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

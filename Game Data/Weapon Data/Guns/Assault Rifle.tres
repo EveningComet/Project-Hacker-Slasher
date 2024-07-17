@@ -8,6 +8,7 @@
 script = ExtResource("1_hdc37")
 action_rate = 0.1
 weapon_prefab = ExtResource("2_6sl2v")
+weapon_attack_type = "Hitscan"
 max_ammo = 120
 ammo_per_mag = 30
 num_shots = 1
