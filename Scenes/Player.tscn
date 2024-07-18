@@ -52,16 +52,16 @@ current = true
 visible = false
 target_position = Vector3(0, 0, -1000)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Crosshair Layer" type="CanvasLayer" parent="."]
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+[node name="CenterContainer" type="CenterContainer" parent="Crosshair Layer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CenterContainer"]
+[node name="TextureRect" type="TextureRect" parent="Crosshair Layer/CenterContainer"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 texture = ExtResource("5_mi3j4")

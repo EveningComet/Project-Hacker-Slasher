@@ -9,13 +9,9 @@ var base_value: float = 0
 ## The things that will change the modified value
 var modifiers: Array[StatModifier] = []
 
-## Should this stat be returned as an int?
-var return_as_int: bool = false
-
 ## Initialize the stat.
-func _init(init_value: float, is_int: bool):
+func _init(init_value: float):
 	base_value    = init_value
-	return_as_int = is_int
 
 ## Raise the base value by the passed amount. Usually called when leveling up.
 func raise_base_value_by(raise_amount: float) -> void:
@@ -52,8 +48,8 @@ func get_calculated_value() -> float:
 	var final_value = base_value
 	for i in range( modifiers.size() ):
 		var mod = (modifiers[i] as StatModifier)
-		if mod.stat_modifier_type == StatModifierTypes.stat_modifier_types.Flat:
+		if mod.stat_modifier_type == StatModifierTypes.StatModifierTypes.Flat:
 			final_value += mod.get_value()
-		elif mod.stat_modifier_type == StatModifierTypes.stat_modifier_types.Percent:
+		elif mod.stat_modifier_type == StatModifierTypes.StatModifierTypes.Percent:
 			final_value *= ( 1 + mod.get_value() )
 	return final_value

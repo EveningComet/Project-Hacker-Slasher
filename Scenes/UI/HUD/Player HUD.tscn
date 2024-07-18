@@ -8,8 +8,10 @@ bg_color = Color(0.260238, 0.686294, 0.562461, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ch8mq"]
 bg_color = Color(0, 0.631247, 0.973838, 1)
 
-[node name="Player HUD" type="CanvasLayer"]
+[node name="Player HUD" type="CanvasLayer" node_paths=PackedStringArray("hp_bar", "sp_bar")]
 script = ExtResource("1_jxobl")
+hp_bar = NodePath("Control/HBoxContainer/Vitals Container/HP Bar")
+sp_bar = NodePath("Control/HBoxContainer/Vitals Container/SP Bar")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

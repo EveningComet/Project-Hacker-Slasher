@@ -2,10 +2,10 @@
 class_name StatModifier extends Resource
 
 ## What stat does this modifier change?
-@export var stat_changing: StatTypes.stat_types
+@export var stat_changing: StatHelper.StatTypes
 
 ## Which type of modifier does this give?
-@export var stat_modifier_type: StatModifierTypes.stat_modifier_types
+@export var stat_modifier_type: StatModifierTypes.StatModifierTypes
 
 ## The modifier's value
 @export var value: float = 0.0

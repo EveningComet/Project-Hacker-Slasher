@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3v813rm3rqkx"]
+
+[ext_resource type="Script" path="res://Scripts/Components/Combatant.gd" id="1_a85qa"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wt764"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5ageo"]
+
+[node name="Test Enemy" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_wt764")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("CapsuleMesh_5ageo")
+
+[node name="Combatant" type="Node" parent="."]
+script = ExtResource("1_a85qa")

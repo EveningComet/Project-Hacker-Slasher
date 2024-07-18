@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://1dtjjuh8diyr"]
+[gd_scene load_steps=15 format=3 uid="uid://1dtjjuh8diyr"]
 
 [ext_resource type="Texture2D" uid="uid://c1q4udkqj6ygu" path="res://Imported Assets/Textures/KenneyNL Prototyping Textures/Dark/texture_01.png" id="1_df8kf"]
 [ext_resource type="Script" path="res://Scripts/Components/TestingLevel.gd" id="1_ef1vq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cldcj0beo4y2g" path="res://Imported Assets/Textures/KenneyNL Prototyping Textures/Orange/texture_01.png" id="4_338oc"]
 [ext_resource type="Texture2D" uid="uid://dlclvhb63qk1j" path="res://Imported Assets/Textures/KenneyNL Prototyping Textures/Purple/texture_03.png" id="5_20wp5"]
 [ext_resource type="PackedScene" uid="uid://bycmm2s7hb11l" path="res://Scenes/UI/HUD/Player HUD.tscn" id="6_fm1he"]
+[ext_resource type="PackedScene" uid="uid://d3v813rm3rqkx" path="res://Scenes/Characters/Test Enemy.tscn" id="8_20wj0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_agog7"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -110,7 +111,11 @@ material = SubResource("StandardMaterial3D_8mhc2")
 [node name="Player" parent="." instance=ExtResource("2_p18sn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="Player HUD" parent="." instance=ExtResource("6_fm1he")]
+[node name="Test Enemy" parent="." instance=ExtResource("8_20wj0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.72743, -31)
+
+[node name="Player HUD" parent="." node_paths=PackedStringArray("curr_player") instance=ExtResource("6_fm1he")]
+curr_player = NodePath("../Player")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

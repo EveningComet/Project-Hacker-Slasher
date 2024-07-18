@@ -1,10 +1,10 @@
 ## A class that stores variables related to different types of stats.
-class_name StatTypes
+class_name StatHelper
 
-enum stat_types {
+enum StatTypes {
 	# Attributes
 	Vitality,             ## For health, defense, etc.
-	Expertise,            ## For physical/regular damage, etc.
+	Technique,            ## For physical/regular damage, etc.
 	Will,                 ## For mind, special points, etc.
 	
 	# Vitals
@@ -14,9 +14,6 @@ enum stat_types {
 	CurrentSP,            # Our current mana/stamina/etc.
 	
 	# Other stats
-	Perception,           # (Hit chance) = Expertise + Will and bonuses
-	Evasion,              # (Dodge)      = Vitality  + Expertise and bonuses
-	Speed,                # (Vitality + Will and bonuses) / 2
 	CriticalHitChance,
 	PhysicalPower,
 	SpecialPower,
@@ -46,9 +43,9 @@ enum DamageTypes {
 
 ## Easy accessor for returning the resistance for damage types.
 static var damage_to_res_map: Dictionary = {
-	DamageTypes.Base: stat_types.Defense,
-	DamageTypes.Heat: stat_types.HeatRes,
-	DamageTypes.Cold: stat_types.ColdRes,
-	DamageTypes.Electricity: stat_types.ElectricityRes,
-	DamageTypes.Psychic: stat_types.PsychicRes
+	DamageTypes.Base: StatTypes.Defense,
+	DamageTypes.Heat: StatTypes.HeatRes,
+	DamageTypes.Cold: StatTypes.ColdRes,
+	DamageTypes.Electricity: StatTypes.ElectricityRes,
+	DamageTypes.Psychic: StatTypes.PsychicRes
 }

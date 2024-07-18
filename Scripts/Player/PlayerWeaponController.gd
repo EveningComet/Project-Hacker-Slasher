@@ -16,12 +16,9 @@ func _physics_process(delta: float) -> void:
 	# Handle the weapon's cooldown
 	current_weapon.tick(delta)
 	if Input.is_action_pressed("primary_attack") and current_weapon.curr_cooldown >= current_weapon.weapon_data.action_rate:
-		if OS.is_debug_build() == true:
-			print("PlayerWeaponController :: %s is attacking." % [get_parent().name])
 		current_weapon.reset_attack_cooldown()
 		
 		# TODO: All of the code here is just for hit scan weapons!
-		print(current_weapon.weapon_data.weapon_attack_type)
 		match current_weapon.weapon_data.weapon_attack_type:
 			"Hitscan":
 				for i in current_weapon.weapon_data.num_shots:
@@ -31,7 +28,14 @@ func _physics_process(delta: float) -> void:
 						
 						# Make the weapon's hit scan look at the point for more accuracy
 						current_weapon.fire_point.look_at(camera_col_point, Vector3.UP)
+						current_weapon.fire_cast.force_raycast_update()
 						if current_weapon.fire_cast.is_colliding() == true:
+							# Check to see if we can damage something
+							var collider = current_weapon.fire_cast.get_collider()
+							if collider != null and collider.has_node("Combatant"):
+								var target_com: Combatant = collider.get_node("Combatant")
+								target_com.take_damage(10)
+								
 							var col_point = current_weapon.fire_cast.get_collision_point()
 							var normal    = current_weapon.fire_cast.get_collision_normal()
 							var bullet_hole = current_weapon.weapon_data.bullet_hole.instantiate()

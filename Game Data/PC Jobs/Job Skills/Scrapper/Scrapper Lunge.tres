@@ -8,5 +8,6 @@ localization_name = "Lunge"
 localization_description = "New description."
 is_passive = false
 tiers = Array[Resource("res://Scripts/Skills/SkillTier.gd")]([])
+effects = Array[Resource("res://Scripts/Skills/Skill Effects/SkillEffect.gd")]([])
 is_starting_skill = false
 minimum_rank_of_previous = 0
