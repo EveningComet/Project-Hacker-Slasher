@@ -65,7 +65,12 @@ func heal(amount: int) -> void:
 		stats[StatHelper.StatTypes.CurrentHP] = get_max_hp()
 
 func remove_sp(amount: int) -> void:
-	pass
+	stats[StatHelper.StatTypes.CurrentSP] -= amount
+	combatant.stat_changed.emit( combatant )
+	stats[StatHelper.StatTypes.CurrentSP] = max(
+		get_curr_sp(),
+		0
+	)
 
 func regain_sp(amount: int) -> void:
 	stats[StatHelper.StatTypes.CurrentSP] += amount

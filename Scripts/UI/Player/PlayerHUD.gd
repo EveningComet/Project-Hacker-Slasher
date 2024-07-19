@@ -21,5 +21,5 @@ func setup_for_player(new_player: Node3D) -> void:
 
 func on_stat_changed(com: Combatant) -> void:
 	# Update the vitals based on damage, skill use, etc.
-	hp_bar.value = (com.stats.get_curr_hp() / com.stats.get_max_hp()) * 100
-	sp_bar.value = (com.stats.get_curr_sp() / com.stats.get_max_sp()) * 100
+	hp_bar.value = (float(com.stats.get_curr_hp()) / com.stats.get_max_hp()) * 100
+	sp_bar.value = (float(com.stats.get_curr_sp()) / com.stats.get_max_sp()) * 100
