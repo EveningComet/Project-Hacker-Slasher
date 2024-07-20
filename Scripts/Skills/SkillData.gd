@@ -11,8 +11,6 @@ class_name SkillData extends Resource
 ## Can this skill be activated?
 @export var is_passive: bool = false
 
-@export var tiers: Array[SkillTier]
-
 ## The collection of effects that define what a skill does.
 @export var effects: Array[SkillEffect] = []
 
@@ -22,9 +20,6 @@ class_name SkillData extends Resource
 
 ## What rank does the previous skill have to be so that this skill can be specced into?
 @export var minimum_rank_of_previous: int = 0
-
-var max_rank: int:
-	get: return tiers.size()
 
 func execute(user, targets) -> void:
 	for e: SkillEffect in effects:
