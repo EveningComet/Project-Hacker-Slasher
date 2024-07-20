@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://td8u1okfyyrt"]
+[gd_scene load_steps=12 format=3 uid="uid://td8u1okfyyrt"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerLocomotionController.gd" id="1_v0xoa"]
 [ext_resource type="Script" path="res://Scripts/Player/Locomotion States/PLGround.gd" id="2_gpyyp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/PlayerWeaponController.gd" id="6_2pjp6"]
 [ext_resource type="Script" path="res://Scripts/Components/Combatant.gd" id="7_3s4vf"]
 [ext_resource type="PackedScene" uid="uid://bvri232d45cau" path="res://Scenes/Weapons/Guns/Assault Rifle.tscn" id="8_n0lqw"]
+[ext_resource type="PackedScene" uid="uid://df6j605s22mv1" path="res://Imported Assets/Models/Mehrasaur Sword/Mehrasaur Sword.glb" id="9_8va6x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tykb7"]
 
@@ -80,3 +81,6 @@ script = ExtResource("7_3s4vf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.666559, 0, 0)
 
 [node name="Assault Rifle" parent="Weapon Holder" instance=ExtResource("8_n0lqw")]
+
+[node name="Mehrasaur Sword" parent="Weapon Holder" instance=ExtResource("9_8va6x")]
+transform = Transform3D(-1.09278e-08, 0, -0.25, -0.25, -1.09278e-08, 1.09278e-08, -1.09278e-08, 0.25, 4.77671e-16, 0, 0.723794, -0.117471)

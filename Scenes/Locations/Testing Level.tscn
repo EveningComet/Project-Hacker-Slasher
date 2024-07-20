@@ -112,7 +112,7 @@ material = SubResource("StandardMaterial3D_8mhc2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Test Enemy" parent="." instance=ExtResource("8_20wj0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.72743, -31)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.81175, -31)
 
 [node name="Player HUD" parent="." node_paths=PackedStringArray("curr_player") instance=ExtResource("6_fm1he")]
 curr_player = NodePath("../Player")
