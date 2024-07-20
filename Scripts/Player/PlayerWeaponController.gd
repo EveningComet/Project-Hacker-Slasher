@@ -9,6 +9,8 @@ class_name PlayerWeaponController extends Node
 ## Stores where the player is aiming.
 var aim_dir: Vector3 = Vector3.ZERO
 
+var prng: RandomNumberGenerator = RandomNumberGenerator.new()
+
 func _ready() -> void:
 	pass
 
@@ -18,12 +20,26 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("primary_attack") and current_weapon.curr_cooldown >= current_weapon.weapon_data.action_rate:
 		current_weapon.reset_attack_cooldown()
 		
+		var cam_ray: RayCast3D = camera_controller.aim_cast
+		var original_rot = camera_controller.aim_cast.rotation
+		
 		# TODO: All of the code here is just for hit scan weapons!
 		match current_weapon.weapon_data.weapon_attack_type:
 			"Hitscan":
+				
 				for i in current_weapon.weapon_data.num_shots:
-					var cam_ray: RayCast3D = camera_controller.aim_cast
+					
+					# Create the random spray
+					var target_vector: Vector3 = Vector3.ZERO
+					var spread_vector = current_weapon.weapon_data.spread
+					target_vector.x = prng.randf_range(-spread_vector.x, spread_vector.x)
+					target_vector.y = prng.randf_range(-spread_vector.y, spread_vector.y)
+					
+					cam_ray.target_position.x = target_vector.x
+					cam_ray.target_position.y = target_vector.y
+					cam_ray.force_raycast_update()
 					if cam_ray.is_colliding() == true:
+						
 						var camera_col_point = cam_ray.get_collision_point()
 						
 						# Make the weapon's hit scan look at the point for more accuracy
@@ -43,9 +59,14 @@ func _physics_process(delta: float) -> void:
 							bullet_hole.global_position = col_point
 							bullet_hole.look_at(bullet_hole.global_transform.origin + normal, Vector3.UP)
 							bullet_hole.rotate_object_local(Vector3(1, 0, 0), 90)
-							await get_tree().create_timer(3.0, false, true).timeout
-							bullet_hole.queue_free()
+							
+				cam_ray.rotation = original_rot
+			"Projetile":
+				pass
 			
+			"Melee":
+				pass
+				
 			_:
 				return
 

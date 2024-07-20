@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dllqq31j7h51a"]
+[gd_scene load_steps=3 format=3 uid="uid://dllqq31j7h51a"]
 
 [ext_resource type="Texture2D" uid="uid://cp8y1p7s865y0" path="res://Imported Assets/Textures/Musdasch Bullet Hole.png" id="1_rulso"]
+[ext_resource type="Script" path="res://Scripts/Weapon/BulletHole.gd" id="2_f3k5q"]
 
 [node name="Bullet Hole" type="Decal"]
 size = Vector3(0.1, 0.1, 0.1)
 texture_albedo = ExtResource("1_rulso")
+script = ExtResource("2_f3k5q")

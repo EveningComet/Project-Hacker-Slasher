@@ -23,8 +23,7 @@ class_name WeaponData extends ItemData
 @export var bullet_hole: PackedScene
 
 # The random recoil in the x and y directions
-@export var x_range: float = 1.0
-@export var y_range: float = 1.0
+@export var spread: Vector2 = Vector2(1.0, 1.0)
 
 ## Copy of the projectile that this weapon will fire, if it uses real projectiles.
 @export var projectile_prefab: PackedScene
