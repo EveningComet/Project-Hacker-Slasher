@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://du70xhl6s6tca"]
+
+[ext_resource type="Script" path="res://Scripts/Weapon/Projectile.gd" id="1_cyqyk"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_otl7y"]
+radius = 0.2
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fxxwo"]
+albedo_color = Color(0.129412, 1, 1, 1)
+roughness = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6p0yf"]
+size = Vector3(0.617188, 0.558838, 1)
+
+[node name="Blaster Bolt" type="CharacterBody3D"]
+script = ExtResource("1_cyqyk")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_otl7y")
+material = SubResource("StandardMaterial3D_fxxwo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_6p0yf")

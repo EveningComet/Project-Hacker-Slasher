@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3 uid="uid://dklwnpt28kgoa"]
+
+[ext_resource type="Script" path="res://Scripts/Weapon/WeaponData.gd" id="1_k5q4f"]
+
+[resource]
+script = ExtResource("1_k5q4f")
+action_rate = 0.5
+weapon_attack_type = "Melee"
+max_ammo = 0
+ammo_per_mag = 0
+num_shots = 1
+spread = Vector2(1, 1)
+localization_name = "Space Sword"
+localization_description = "It's pretty cool."
+item_type = 0
+max_stack_size = 1
+equip_type = 0
+stat_modifiers = Array[Resource("res://Scripts/Stats/StatModifier.gd")]([])
+weapon_type = 0
