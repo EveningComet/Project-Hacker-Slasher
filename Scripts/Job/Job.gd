@@ -2,11 +2,11 @@
 ## Defines a set of data related to a class that a player character can be.
 class_name Job extends Resource
 
-@export var localization_name:        String = "New Job"
+@export_category("Base Info")
+@export var           localization_name:        String = "New Job"
 @export_multiline var localization_description: String = "New description."
 
 @export_category("Stats")
-
 @export var starting_strength: int = 25
 
 @export_category("Skill Data")
