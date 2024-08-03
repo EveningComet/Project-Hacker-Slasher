@@ -1,4 +1,4 @@
-## Houses items.
+## Houses a collection of items.
 class_name Inventory extends Node
 
 ## Whenever this inventory gets updated, pass it along.
@@ -7,6 +7,7 @@ signal inventory_updated(inventory: Inventory)
 ## When interacted with, we want others to know about the interaction.
 signal inventory_interacted(inventory_data: Inventory, index: int, button: int)
 
+# TODO: Infinite inventory for this game?
 ## The max amount of items that can be held.
 @export var max_size: int = 50
 

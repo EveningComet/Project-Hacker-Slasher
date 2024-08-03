@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://td8u1okfyyrt"]
+[gd_scene load_steps=19 format=3 uid="uid://td8u1okfyyrt"]
 
+[ext_resource type="Script" path="res://Scripts/Player/PlayerCharacter.gd" id="1_2gtyk"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerLocomotionController.gd" id="1_v0xoa"]
 [ext_resource type="Script" path="res://Scripts/Player/Locomotion States/PLGround.gd" id="2_gpyyp"]
 [ext_resource type="Script" path="res://Scripts/Player/Locomotion States/PLAir.gd" id="3_b8d7e"]
@@ -10,12 +11,24 @@
 [ext_resource type="PackedScene" uid="uid://bvri232d45cau" path="res://Scenes/Weapons/Guns/Assault Rifle.tscn" id="8_n0lqw"]
 [ext_resource type="PackedScene" uid="uid://ct8sefua313wr" path="res://Scenes/Weapons/Melee/Mehrauser Sword.tscn" id="10_k3hhy"]
 [ext_resource type="PackedScene" uid="uid://b2xjy0s54sgw3" path="res://Scenes/Weapons/Guns/Blaster.tscn" id="10_qdf8c"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Inventory.gd" id="11_hg3lk"]
+[ext_resource type="Script" path="res://Scripts/Inventory/PlayerEquipmentInventory.gd" id="13_il0p0"]
+[ext_resource type="Script" path="res://Scripts/Skills/SkillHandler.gd" id="14_77l1v"]
+[ext_resource type="Script" path="res://Scripts/Skills/SkillInstance.gd" id="15_hj0kg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tykb7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_n4s2l"]
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="Resource" id="Resource_ja1h4"]
+script = ExtResource("15_hj0kg")
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("player_inventory", "player_equipment", "player_weapon_controller", "combatant")]
+script = ExtResource("1_2gtyk")
+player_inventory = NodePath("Player Inventory")
+player_equipment = NodePath("PlayerEquipmentInventory")
+player_weapon_controller = NodePath("PlayerWeaponController")
+combatant = NodePath("Combatant")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_tykb7")
@@ -70,10 +83,11 @@ texture = ExtResource("5_mi3j4")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="PlayerWeaponController" type="Node" parent="." node_paths=PackedStringArray("camera_controller", "current_weapon")]
+[node name="PlayerWeaponController" type="Node" parent="." node_paths=PackedStringArray("camera_controller", "current_weapon", "player_equipment")]
 script = ExtResource("6_2pjp6")
 camera_controller = NodePath("../CameraController")
 current_weapon = NodePath("../Weapon Holder/Blaster")
+player_equipment = NodePath("../PlayerEquipmentInventory")
 
 [node name="Combatant" type="Node" parent="."]
 script = ExtResource("7_3s4vf")
@@ -88,3 +102,13 @@ visible = false
 
 [node name="Mehrasaur Sword" parent="Weapon Holder" instance=ExtResource("10_k3hhy")]
 visible = false
+
+[node name="Player Inventory" type="Node" parent="."]
+script = ExtResource("11_hg3lk")
+
+[node name="PlayerEquipmentInventory" type="Node" parent="."]
+script = ExtResource("13_il0p0")
+
+[node name="SkillHandler" type="Node" parent="."]
+script = ExtResource("14_77l1v")
+curr_skills = Array[ExtResource("15_hj0kg")]([SubResource("Resource_ja1h4")])

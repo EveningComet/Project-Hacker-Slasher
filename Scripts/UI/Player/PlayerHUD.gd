@@ -2,8 +2,11 @@
 class_name PlayerHUD extends CanvasLayer
 
 ## The player currently being monitored by this HUD.
-@export var curr_player: Node3D
+@export var curr_player: PlayerCharacter
 
+@export var skill_bar: SkillBar
+
+@export_category("Vitals")
 # HP & SP bars
 @export var hp_bar: ProgressBar
 @export var sp_bar: ProgressBar
@@ -14,8 +17,11 @@ func _ready() -> void:
 	if curr_player != null:
 		setup_for_player(curr_player)
 
-func setup_for_player(new_player: Node3D) -> void:
-	var combatant: Combatant = curr_player.get_node("Combatant")
+func setup_for_player(new_player: PlayerCharacter) -> void:
+	curr_player = new_player
+	skill_bar.set_player_skills(curr_player.skill_handler)
+	
+	var combatant: Combatant = curr_player.combatant
 	combatant.stat_changed.connect( on_stat_changed )
 	on_stat_changed(combatant)
 

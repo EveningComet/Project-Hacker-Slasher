@@ -4,7 +4,12 @@ class_name PlayerWeaponController extends Node
 ## The player's camera is needed to help with aiming.
 @export var camera_controller: CameraController
 
+# TODO: Make this system take into account weapon data.
+# Might have to create a weapon instance object.
 @export var current_weapon: Weapon
+
+## Reference to keep track of weapon changes.
+@export var player_equipment: PlayerEquipmentInventory
 
 ## Stores where the player is aiming.
 var aim_dir: Vector3 = Vector3.ZERO
@@ -71,6 +76,11 @@ func _physics_process(delta: float) -> void:
 		
 		# Reset the raycast's rotation
 		cam_ray.rotation = original_rot
+
+func set_current_weapon(swap_to: WeaponData) -> void:
+	var weapon_to_swap_to: Weapon = swap_to.weapon_prefab.instantiate()
+	if current_weapon != null:
+		current_weapon.hide()
 
 func set_spread() -> void:
 	# Create the random spray

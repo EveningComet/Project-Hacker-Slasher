@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bycmm2s7hb11l"]
+[gd_scene load_steps=5 format=3 uid="uid://bycmm2s7hb11l"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Player/PlayerHUD.gd" id="1_jxobl"]
+[ext_resource type="PackedScene" uid="uid://c2x608wq1rrsx" path="res://Scenes/UI/HUD/Skill Bar.tscn" id="2_ubk7g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mfi6j"]
 bg_color = Color(0.260238, 0.686294, 0.562461, 1)
@@ -8,8 +9,9 @@ bg_color = Color(0.260238, 0.686294, 0.562461, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ch8mq"]
 bg_color = Color(0, 0.631247, 0.973838, 1)
 
-[node name="Player HUD" type="CanvasLayer" node_paths=PackedStringArray("hp_bar", "sp_bar")]
+[node name="Player HUD" type="CanvasLayer" node_paths=PackedStringArray("skill_bar", "hp_bar", "sp_bar")]
 script = ExtResource("1_jxobl")
+skill_bar = NodePath("Control/Skill Bar")
 hp_bar = NodePath("Control/HBoxContainer/Vitals Container/HP Bar")
 sp_bar = NodePath("Control/HBoxContainer/Vitals Container/SP Bar")
 
@@ -53,3 +55,17 @@ custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_ch8mq")
 value = 50.0
+
+[node name="Skill Bar" parent="Control" instance=ExtResource("2_ubk7g")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -173.0
+offset_top = -180.0
+offset_right = 173.0
+offset_bottom = -106.0
+grow_horizontal = 2
+grow_vertical = 0

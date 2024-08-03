@@ -1,5 +1,5 @@
-## Stores the equipment for a character.
-class_name EquipmentInventory extends Inventory
+## Stores the equipment for a player character.
+class_name PlayerEquipmentInventory extends Inventory
 
 const MAX_NUMBER_EQUP_SLOTS: int = 4
 

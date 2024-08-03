@@ -5,7 +5,7 @@ class_name WeaponData extends ItemData
 ## How often the player can attack with this weapon, in seconds.
 @export var action_rate: float = 0.5
 
-## A copy of the weapon's graphics.
+## The scene of the weapon object associated with this object.
 @export var weapon_prefab: PackedScene
 
 @export_enum("Hitscan", "Projectile", "Melee") var weapon_attack_type = "Hitscan"
