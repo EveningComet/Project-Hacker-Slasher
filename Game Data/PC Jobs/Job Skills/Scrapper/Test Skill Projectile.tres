@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=6 format=3 uid="uid://wm3iprglyfqg"]
+
+[ext_resource type="PackedScene" uid="uid://du70xhl6s6tca" path="res://Scenes/Weapons/Projectiles/Blaster Bolt.tscn" id="1_ctiig"]
+[ext_resource type="Script" path="res://Scripts/Skills/SkillData.gd" id="1_g58ei"]
+[ext_resource type="Texture2D" uid="uid://di5jm1g541jpr" path="res://icon.svg" id="1_wngb7"]
+[ext_resource type="Script" path="res://Scripts/Skills/Skill Effects/SpawnProjectileEffect.gd" id="2_1vg5i"]
+
+[sub_resource type="Resource" id="Resource_cy6ma"]
+script = ExtResource("2_1vg5i")
+num_to_spawn = 1
+projectile_prefab = ExtResource("1_ctiig")
+power_scale = 1.0
+
+[resource]
+script = ExtResource("1_g58ei")
+localization_name = "Test Skill Projectile"
+localization_description = "A skill used to test firing of projectiles."
+display_icon = ExtResource("1_wngb7")
+is_passive = false
+base_cooldown = 2.0
+base_cost = 5
+effects = Array[Resource("res://Scripts/Skills/Skill Effects/SkillEffect.gd")]([SubResource("Resource_cy6ma")])
+is_starting_skill = false

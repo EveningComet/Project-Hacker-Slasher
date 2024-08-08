@@ -1,14 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://ccn32wqf4c1wi"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Player/SkillSlot.gd" id="1_yc4ma"]
-[ext_resource type="Texture2D" uid="uid://di5jm1g541jpr" path="res://icon.svg" id="2_pbtt5"]
 
-[node name="Skill Slot" type="PanelContainer" node_paths=PackedStringArray("icon")]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_v1sex"]
+size = Vector2(64, 64)
+
+[node name="Skill Slot" type="PanelContainer" node_paths=PackedStringArray("icon", "progress_bar", "time_label")]
 custom_minimum_size = Vector2(64, 64)
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_yc4ma")
 icon = NodePath("MarginContainer/Icon")
+progress_bar = NodePath("MarginContainer/Sweep")
+time_label = NodePath("MarginContainer/Sweep/MarginContainer/Cooldown Value")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -19,6 +23,31 @@ theme_override_constants/margin_bottom = 5
 
 [node name="Icon" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
-texture = ExtResource("2_pbtt5")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="Sweep" type="TextureProgressBar" parent="MarginContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+fill_mode = 5
+nine_patch_stretch = true
+texture_progress = SubResource("PlaceholderTexture2D_v1sex")
+tint_progress = Color(0, 0, 0, 0.705882)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Sweep"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cooldown Value" type="Label" parent="MarginContainer/Sweep/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 20
+text = "4.2"
+horizontal_alignment = 1

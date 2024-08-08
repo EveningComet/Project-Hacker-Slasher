@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://td8u1okfyyrt"]
+[gd_scene load_steps=20 format=3 uid="uid://td8u1okfyyrt"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerCharacter.gd" id="1_2gtyk"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerLocomotionController.gd" id="1_v0xoa"]
@@ -13,22 +13,25 @@
 [ext_resource type="PackedScene" uid="uid://b2xjy0s54sgw3" path="res://Scenes/Weapons/Guns/Blaster.tscn" id="10_qdf8c"]
 [ext_resource type="Script" path="res://Scripts/Inventory/Inventory.gd" id="11_hg3lk"]
 [ext_resource type="Script" path="res://Scripts/Inventory/PlayerEquipmentInventory.gd" id="13_il0p0"]
-[ext_resource type="Script" path="res://Scripts/Skills/SkillHandler.gd" id="14_77l1v"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerSkillHandler.gd" id="14_8t3ud"]
 [ext_resource type="Script" path="res://Scripts/Skills/SkillInstance.gd" id="15_hj0kg"]
+[ext_resource type="Resource" uid="uid://wm3iprglyfqg" path="res://Game Data/PC Jobs/Job Skills/Scrapper/Test Skill Projectile.tres" id="16_kdfxq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tykb7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_n4s2l"]
 
-[sub_resource type="Resource" id="Resource_ja1h4"]
+[sub_resource type="Resource" id="Resource_6oe71"]
 script = ExtResource("15_hj0kg")
+skill = ExtResource("16_kdfxq")
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("player_inventory", "player_equipment", "player_weapon_controller", "combatant")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("player_inventory", "player_equipment", "player_weapon_controller", "combatant", "skill_handler")]
 script = ExtResource("1_2gtyk")
 player_inventory = NodePath("Player Inventory")
 player_equipment = NodePath("PlayerEquipmentInventory")
 player_weapon_controller = NodePath("PlayerWeaponController")
 combatant = NodePath("Combatant")
+skill_handler = NodePath("PlayerSkillHandler")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_tykb7")
@@ -109,6 +112,8 @@ script = ExtResource("11_hg3lk")
 [node name="PlayerEquipmentInventory" type="Node" parent="."]
 script = ExtResource("13_il0p0")
 
-[node name="SkillHandler" type="Node" parent="."]
-script = ExtResource("14_77l1v")
-curr_skills = Array[ExtResource("15_hj0kg")]([SubResource("Resource_ja1h4")])
+[node name="PlayerSkillHandler" type="Node" parent="." node_paths=PackedStringArray("camera_controller", "combatant")]
+script = ExtResource("14_8t3ud")
+camera_controller = NodePath("../CameraController")
+active_skills = Array[ExtResource("15_hj0kg")]([SubResource("Resource_6oe71")])
+combatant = NodePath("../Combatant")
