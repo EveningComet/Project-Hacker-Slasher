@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bycmm2s7hb11l"]
+[gd_scene load_steps=6 format=3 uid="uid://bycmm2s7hb11l"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Player/PlayerHUD.gd" id="1_jxobl"]
+[ext_resource type="PackedScene" uid="uid://df8lp60jm00wx" path="res://Scenes/UI/HUD/Vitalbar.tscn" id="2_3fate"]
 [ext_resource type="PackedScene" uid="uid://c2x608wq1rrsx" path="res://Scenes/UI/HUD/Skill Bar.tscn" id="2_ubk7g"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mfi6j"]
-bg_color = Color(0.260238, 0.686294, 0.562461, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ex5rw"]
+bg_color = Color(0.109804, 0.47451, 0.278431, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ch8mq"]
-bg_color = Color(0, 0.631247, 0.973838, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f45dx"]
+bg_color = Color(0.172549, 0.156863, 0.568627, 1)
 
 [node name="Player HUD" type="CanvasLayer" node_paths=PackedStringArray("skill_bar", "hp_bar", "sp_bar")]
 script = ExtResource("1_jxobl")
@@ -43,17 +44,15 @@ layout_mode = 2
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="HP Bar" type="ProgressBar" parent="Control/HBoxContainer/Vitals Container"]
-custom_minimum_size = Vector2(200, 50)
+[node name="HP Bar" parent="Control/HBoxContainer/Vitals Container" instance=ExtResource("2_3fate")]
 layout_mode = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_mfi6j")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ex5rw")
 value = 50.0
 fill_mode = 1
 
-[node name="SP Bar" type="ProgressBar" parent="Control/HBoxContainer/Vitals Container"]
-custom_minimum_size = Vector2(200, 50)
+[node name="SP Bar" parent="Control/HBoxContainer/Vitals Container" instance=ExtResource("2_3fate")]
 layout_mode = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_ch8mq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_f45dx")
 value = 50.0
 
 [node name="Skill Bar" parent="Control" instance=ExtResource("2_ubk7g")]

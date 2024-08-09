@@ -8,8 +8,8 @@ class_name PlayerHUD extends CanvasLayer
 
 @export_category("Vitals")
 # HP & SP bars
-@export var hp_bar: ProgressBar
-@export var sp_bar: ProgressBar
+@export var hp_bar: Vitalbar
+@export var sp_bar: Vitalbar
 
 # Ammo counter
 
@@ -26,6 +26,10 @@ func setup_for_player(new_player: PlayerCharacter) -> void:
 	on_stat_changed(combatant)
 
 func on_stat_changed(com: Combatant) -> void:
-	# Update the vitals based on damage, skill use, etc.
-	hp_bar.value = (float(com.stats.get_curr_hp()) / com.stats.get_max_hp()) * 100
-	sp_bar.value = (float(com.stats.get_curr_sp()) / com.stats.get_max_sp()) * 100
+	# Update the bar if the health, special points, or experience changed
+	hp_bar.update_display(
+		com.stats.get_curr_hp(), com.stats.get_max_hp()
+	)
+	sp_bar.update_display(
+		com.stats.get_curr_sp(), com.stats.get_max_sp()
+	)
