@@ -52,6 +52,7 @@ func take_damage(damage_data) -> void:
 	damage_data -= get_defense()
 	stats[StatHelper.StatTypes.CurrentHP] -= damage_data
 	combatant.stat_changed.emit(combatant)
+	
 	# Notify anything about dying
 	if get_curr_hp() <= 0:
 		Eventbus.hp_depleted.emit(combatant)
@@ -63,6 +64,8 @@ func heal(amount: int) -> void:
 	stats[StatHelper.StatTypes.CurrentHP] += amount
 	if get_curr_hp() > get_max_hp():
 		stats[StatHelper.StatTypes.CurrentHP] = get_max_hp()
+	
+	combatant.stat_changed.emit(combatant)
 
 func remove_sp(amount: int) -> void:
 	stats[StatHelper.StatTypes.CurrentSP] -= amount
@@ -71,8 +74,12 @@ func remove_sp(amount: int) -> void:
 		get_curr_sp(),
 		0
 	)
+	
+	combatant.stat_changed.emit(combatant)
 
 func regain_sp(amount: int) -> void:
 	stats[StatHelper.StatTypes.CurrentSP] += amount
 	if get_curr_sp() > get_max_sp():
 		stats[StatHelper.StatTypes.CurrentSP] = get_max_sp()
+	
+	combatant.stat_changed.emit(combatant)

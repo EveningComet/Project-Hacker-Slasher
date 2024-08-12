@@ -6,3 +6,12 @@ class_name SkillEffect extends Resource
 
 func execute(activator, targets) -> void:
 	pass
+
+func get_power(user) -> int:
+	return 1
+
+func get_physical_power(user) -> int:
+	return 1
+
+func get_special_power(user) -> int:
+	return 1

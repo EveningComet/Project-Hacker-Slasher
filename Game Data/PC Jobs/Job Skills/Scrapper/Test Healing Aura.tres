@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SkillData" load_steps=4 format=3 uid="uid://caomfo06i28jw"]
+
+[ext_resource type="Script" path="res://Scripts/Skills/Skill Effects/SpawnAura.gd" id="1_ibcgu"]
+[ext_resource type="Script" path="res://Scripts/Skills/SkillData.gd" id="1_vv8xp"]
+
+[sub_resource type="Resource" id="Resource_rdkl0"]
+script = ExtResource("1_ibcgu")
+power_scale = 1.0
+
+[resource]
+script = ExtResource("1_vv8xp")
+localization_name = "Healing Aura"
+localization_description = "Spawn a healing aura."
+is_passive = false
+base_cooldown = 30.0
+base_cost = 5
+effects = Array[Resource("res://Scripts/Skills/Skill Effects/SkillEffect.gd")]([SubResource("Resource_rdkl0")])
+is_starting_skill = false

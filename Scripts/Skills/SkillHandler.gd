@@ -12,17 +12,13 @@ class_name SkillHandler extends Node
 
 func _ready() -> void:
 	# Create empty slots to allow for swapping and the like
-	print(active_skills)
 	var copy_of_active_skills: Array[SkillInstance] = []
 	copy_of_active_skills.append_array(active_skills)
-	print(copy_of_active_skills)
 	active_skills.clear()
 	for i in Utils.MAX_ACTIVE_SKILLS:
 		active_skills.append( null )
 	for i in range(copy_of_active_skills.size()):
 		active_skills.insert(i, copy_of_active_skills[i])
-	
-	print(active_skills)
 
 func _physics_process(delta: float) -> void:
 	update_active_skills( delta )
@@ -46,6 +42,7 @@ func _was_skill_use_successful(skill_instance: SkillInstance) -> bool:
 			get_parent(), []
 		)
 		skill_instance.reset_cooldown()
+		combatant.stats.remove_sp(skill_instance.skill.base_cost)
 		
 		return true
 	
