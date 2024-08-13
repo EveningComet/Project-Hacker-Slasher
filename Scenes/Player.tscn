@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://td8u1okfyyrt"]
+[gd_scene load_steps=21 format=3 uid="uid://td8u1okfyyrt"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerCharacter.gd" id="1_2gtyk"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerLocomotionController.gd" id="1_v0xoa"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/PlayerSkillHandler.gd" id="14_8t3ud"]
 [ext_resource type="Script" path="res://Scripts/Skills/SkillInstance.gd" id="15_hj0kg"]
 [ext_resource type="Resource" uid="uid://wm3iprglyfqg" path="res://Game Data/PC Jobs/Job Skills/Scrapper/Test Skill Projectile.tres" id="16_kdfxq"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerInputController.gd" id="17_4a572"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tykb7"]
 
@@ -45,8 +46,9 @@ mesh = SubResource("CapsuleMesh_n4s2l")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.638788, -0.4)
 size = Vector3(0.25, 0.25, 1)
 
-[node name="PlayerLocomotionController" type="Node" parent="." node_paths=PackedStringArray("camera_controller")]
+[node name="PlayerLocomotionController" type="Node" parent="." node_paths=PackedStringArray("input_controller", "camera_controller")]
 script = ExtResource("1_v0xoa")
+input_controller = NodePath("../PlayerInputController")
 camera_controller = NodePath("../CameraController")
 initial_state = NodePath("PLGround")
 
@@ -55,6 +57,8 @@ script = ExtResource("2_gpyyp")
 
 [node name="PLAir" type="Node" parent="PlayerLocomotionController"]
 script = ExtResource("3_b8d7e")
+acceleration = 20.0
+friction = 20.0
 
 [node name="CameraController" type="SpringArm3D" parent="." node_paths=PackedStringArray("aim_cast")]
 spring_length = 4.0
@@ -117,3 +121,6 @@ script = ExtResource("14_8t3ud")
 camera_controller = NodePath("../CameraController")
 active_skills = Array[ExtResource("15_hj0kg")]([SubResource("Resource_6oe71")])
 combatant = NodePath("../Combatant")
+
+[node name="PlayerInputController" type="Node" parent="."]
+script = ExtResource("17_4a572")

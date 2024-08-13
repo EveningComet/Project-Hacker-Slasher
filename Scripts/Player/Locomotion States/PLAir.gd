@@ -1,4 +1,4 @@
-## For when the player is in the air.
+## State that the player entered from either jumping or falling.
 class_name PLAir extends PLState
 
 func setup_state(new_sm: PlayerLocomotionController) -> void:
@@ -12,17 +12,12 @@ func setup_state(new_sm: PlayerLocomotionController) -> void:
 func enter(msgs: Dictionary = {}) -> void:
 	match msgs:
 		
-		# We entered from a jump
+		# Entered from a jump
 		{'velocity': var v, 'max_jump_velocity': var mjv}:
 			velocity   = v
 			velocity.y = max_jump_velocity
 		
-		# Entered from wall jump
-		{'velocity': var v, 'wall_jump_away_height': var wjah}:
-			velocity = v
-			velocity.y = wjah
-		
-		# Entered from a fall
+		# Entered from falling
 		{'velocity': var v}:
 			velocity = v
 
@@ -30,11 +25,9 @@ func exit() -> void:
 	velocity = Vector3.ZERO
 
 func handle_move(delta: float) -> void:
-	get_input_vector()
 	apply_movement( delta )
 	apply_friction( delta )
-	
-	if Input.is_action_just_released("jump") and velocity.y > min_jump_velocity:
+	if input_controller.jump_released == true and velocity.y > min_jump_velocity:
 		velocity.y = min_jump_velocity
 	
 	velocity.y -= gravity * delta
@@ -44,34 +37,18 @@ func handle_move(delta: float) -> void:
 	if cb.is_on_ceiling() == true:
 		velocity.y = 0
 	
-	# Check for wallsliding
-	if cb.is_on_wall() == true and velocity.y < 0 and Input.is_action_pressed("move_forward"):
-		my_state_machine.change_to_state("PLWallSlide")
-		return
-	
 	if cb.is_on_floor() == true:
 		velocity.y = 0
 		my_state_machine.change_to_state("PLGround", {velocity = velocity})
 		return
 	
-	var cam_dir = (my_state_machine.camera_controller.global_transform.basis * Vector3.BACK).normalized()
-	orient_character_to_direction(cam_dir, delta)
-	
-func get_input_vector() -> void:
-	# Get our movement value, adjusted to work with controllers
-	input_dir = Vector3.ZERO
-	input_dir.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	input_dir.z = Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
-	input_dir = input_dir.normalized() if input_dir.length() > 1 else input_dir
-	
-	# Adjust the input based on where we're looking
-	input_dir = (input_dir.x * cb.transform.basis.x) + (input_dir.z * cb.transform.basis.z)
+	orient_to_face_camera_direction(my_state_machine.camera_controller, delta)
 
 func apply_movement(delta: float) -> void:
 	if input_dir != Vector3.ZERO:
-		velocity.x = velocity.move_toward(input_dir * move_speed, air_accel * delta).x
-		velocity.z = velocity.move_toward(input_dir * move_speed, air_accel * delta).z
+		velocity.x = velocity.move_toward(input_dir * move_speed, acceleration * delta).x
+		velocity.z = velocity.move_toward(input_dir * move_speed, acceleration * delta).z
 
 func apply_friction(delta: float) -> void:
 	if input_dir == Vector3.ZERO:
-		velocity = velocity.move_toward(Vector3.ZERO, air_friction * delta)
+		velocity = velocity.move_toward(Vector3.ZERO, friction * delta)
