@@ -27,4 +27,3 @@ class_name WeaponData extends ItemData
 
 ## Copy of the projectile that this weapon will fire, if it uses real projectiles.
 @export var projectile_prefab: PackedScene
-
