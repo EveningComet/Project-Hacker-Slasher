@@ -5,7 +5,7 @@ class_name Combatant extends Node
 ## know about it.
 signal stat_changed(com: Combatant)
 
-@export var stats: Stats = Stats.new(self)
+var stats: Stats = Stats.new(self)
 
 func take_damage(damage_data: int) -> void:
 	# TODO: Damage data should be more than just an int.

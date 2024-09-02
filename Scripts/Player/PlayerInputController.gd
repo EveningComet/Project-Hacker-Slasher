@@ -1,13 +1,26 @@
 ## Responsible for managing the player's input.
 class_name PlayerInputController extends Node
 
+signal toggle_inventory()
+
 var input_dir: Vector3 = Vector3.ZERO
+
+var player_character: PlayerCharacter
 
 var jump_pressed:  bool = false
 var jump_released: bool = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("inventory"):
+		toggle_inventory.emit()
+		
+	if player_character.is_inventory_open() == true:
+		input_dir     = Vector3.ZERO
+		jump_pressed  = false
+		jump_released = false
+		return
+		
 	update_input_dir()
 	
 	jump_pressed  = false
@@ -16,7 +29,7 @@ func _process(delta: float) -> void:
 		jump_pressed = true
 	if Input.is_action_just_released("jump"):
 		jump_released = true
-
+	
 func update_input_dir() -> void:
 	input_dir = Vector3.ZERO
 	input_dir.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")

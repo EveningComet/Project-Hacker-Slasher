@@ -5,7 +5,7 @@ class_name Inventory extends Node
 signal inventory_updated(inventory: Inventory)
 
 ## When interacted with, we want others to know about the interaction.
-signal inventory_interacted(inventory_data: Inventory, index: int, button: int)
+signal inventory_interacted(inventory_data: Inventory, slot_data: ItemSlotData)
 
 # TODO: Infinite inventory for this game?
 ## The max amount of items that can be held.
@@ -19,11 +19,6 @@ var money: int = 0
 ## For when you want to create a clean inventory or one at runtime.
 func initialize_slots() -> void:
 	stored_items.clear()
-	for i in max_size:
-		var slot: ItemSlotData = ItemSlotData.new()
-		slot.stored_item = null
-		slot.quantity    = 0
-		stored_items.append( null )
 
 ## Return a slot data object, given the passed index.
 func grab_slot_data(index: int) -> ItemSlotData:
@@ -89,8 +84,7 @@ func use_slot_data(index: int) -> void:
 	inventory_updated.emit( self )
 
 ## Used when picking up singular items on the ground.
-func add_singular_slot_data(slot_data: ItemSlotData) -> bool:
-	
+func add_slot_data(slot_data: ItemSlotData) -> bool:
 	# If we find a slot we can stack to, try it
 	for index in stored_items.size():
 		if stored_items[index] != null and stored_items[index].can_fully_merge_with(slot_data) == true:
@@ -98,22 +92,10 @@ func add_singular_slot_data(slot_data: ItemSlotData) -> bool:
 			inventory_updated.emit( self )
 			return true
 	
-	# If we find an empty space, pickup the item.
-	for index in stored_items.size():
-		if stored_items[index] == null:
-			stored_items[index] = slot_data
-			inventory_updated.emit( self )
-			return true
-	
-	# Add an item to a slot if it has nothing
-	for index in stored_items.size():
-		if stored_items[index] == null or stored_items[index].stored_item == null:
-			stored_items[index] = slot_data
-			inventory_updated.emit( self )
-			return true
+	# Add if we still have space
+	if stored_items.size() + 1 <= max_size:
+		stored_items.append(slot_data)
+		inventory_updated.emit( self )
+		return true
 	
 	return false
-
-## When the player clicks on an item slot in the ui, we want to keep track of that.
-func on_slot_clicked(index: int, button: int) -> void:
-	inventory_interacted.emit( self, index, button )

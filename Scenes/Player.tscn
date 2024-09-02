@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://td8u1okfyyrt"]
+[gd_scene load_steps=22 format=3 uid="uid://td8u1okfyyrt"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerCharacter.gd" id="1_2gtyk"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerLocomotionController.gd" id="1_v0xoa"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://Scripts/Skills/SkillInstance.gd" id="15_hj0kg"]
 [ext_resource type="Resource" uid="uid://wm3iprglyfqg" path="res://Game Data/PC Jobs/Job Skills/Scrapper/Test Skill Projectile.tres" id="16_kdfxq"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerInputController.gd" id="17_4a572"]
+[ext_resource type="PackedScene" uid="uid://0h1nedbhb7xp" path="res://Scenes/UI/Inventory/Player Inventory Handler.tscn" id="18_qkwql"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tykb7"]
 
@@ -26,13 +27,15 @@
 script = ExtResource("15_hj0kg")
 skill = ExtResource("16_kdfxq")
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("player_inventory", "player_equipment", "player_weapon_controller", "combatant", "skill_handler")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("input_controller", "player_inventory", "player_equipment", "player_weapon_controller", "combatant", "skill_handler", "player_inventory_handler")]
 script = ExtResource("1_2gtyk")
+input_controller = NodePath("PlayerInputController")
 player_inventory = NodePath("Player Inventory")
 player_equipment = NodePath("PlayerEquipmentInventory")
 player_weapon_controller = NodePath("PlayerWeaponController")
 combatant = NodePath("Combatant")
 skill_handler = NodePath("PlayerSkillHandler")
+player_inventory_handler = NodePath("Player Inventory Handler")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_tykb7")
@@ -71,24 +74,7 @@ player_path = NodePath("..")
 current = true
 
 [node name="Aim Cast" type="RayCast3D" parent="CameraController/Camera3D"]
-visible = false
 target_position = Vector3(0, 0, -1000)
-
-[node name="Crosshair Layer" type="CanvasLayer" parent="."]
-
-[node name="CenterContainer" type="CenterContainer" parent="Crosshair Layer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="Crosshair Layer/CenterContainer"]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-texture = ExtResource("5_mi3j4")
-expand_mode = 1
-stretch_mode = 5
 
 [node name="PlayerWeaponController" type="Node" parent="." node_paths=PackedStringArray("camera_controller", "current_weapon", "player_equipment")]
 script = ExtResource("6_2pjp6")
@@ -124,3 +110,21 @@ combatant = NodePath("../Combatant")
 
 [node name="PlayerInputController" type="Node" parent="."]
 script = ExtResource("17_4a572")
+
+[node name="Crosshair Layer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="Crosshair Layer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Crosshair Layer/CenterContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("5_mi3j4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Player Inventory Handler" parent="." instance=ExtResource("18_qkwql")]

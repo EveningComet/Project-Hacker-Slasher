@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://0h1nedbhb7xp"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Player/Inventory/PlayerInventoryHandler.gd" id="1_k8sj0"]
+[ext_resource type="PackedScene" uid="uid://0qaaf750gnrl" path="res://Scenes/UI/Inventory/Player Inventory Displayer.tscn" id="2_ch8wq"]
+[ext_resource type="PackedScene" uid="uid://dpllol6wm4lmq" path="res://Scenes/UI/Inventory/Player Equipment Menu.tscn" id="3_w063k"]
+
+[node name="Player Inventory Handler" type="CanvasLayer" node_paths=PackedStringArray("inventory_displayer", "equipment_displayer")]
+script = ExtResource("1_k8sj0")
+inventory_displayer = NodePath("Control/Holder/Player Inventory Displayer")
+equipment_displayer = NodePath("Control/Holder/Player Equipment Menu")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Holder" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -675.0
+offset_top = -400.0
+offset_right = 675.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Player Inventory Displayer" parent="Control/Holder" instance=ExtResource("2_ch8wq")]
+layout_mode = 2
+
+[node name="Player Equipment Menu" parent="Control/Holder" instance=ExtResource("3_w063k")]
+layout_mode = 2

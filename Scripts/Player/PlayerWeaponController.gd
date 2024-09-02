@@ -93,7 +93,6 @@ func set_spread() -> void:
 	cam_ray.target_position.y = target_vector.y
 	cam_ray.force_raycast_update()
 
-
 func get_aim_dir() -> Vector3:
 	return camera_controller.aim_cast.global_transform * camera_controller.aim_cast.target_position
 	

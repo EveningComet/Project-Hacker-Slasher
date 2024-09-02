@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://b268ko5ae2785"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/ItemData.gd" id="1_e64t4"]
+[ext_resource type="Texture2D" uid="uid://di5jm1g541jpr" path="res://icon.svg" id="1_n7a48"]
+[ext_resource type="Script" path="res://Scripts/Stats/StatModifier.gd" id="2_wnngi"]
+
+[resource]
+script = ExtResource("1_e64t4")
+localization_name = "Test Item"
+localization_description = "A pretty cool item."
+item_type = 0
+item_icon = ExtResource("1_n7a48")
+max_stack_size = 1
+equip_type = 0
+stat_modifiers = Array[ExtResource("2_wnngi")]([])
+weapon_type = 0
