@@ -1,5 +1,6 @@
-## The middleman for a player's inventory and equipment.
-class_name PlayerInventoryHandler extends CanvasLayer
+## The menu responsible for displaying the player's equipment, inventory, and
+## an external inventory.
+class_name PlayerDashboard extends CanvasLayer
 
 @export var player_inventory: Inventory = null
 @export var player_equipment: PlayerEquipmentInventory = null

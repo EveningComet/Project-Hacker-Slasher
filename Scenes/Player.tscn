@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://Scripts/Skills/SkillInstance.gd" id="15_hj0kg"]
 [ext_resource type="Resource" uid="uid://wm3iprglyfqg" path="res://Game Data/PC Jobs/Job Skills/Scrapper/Test Skill Projectile.tres" id="16_kdfxq"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerInputController.gd" id="17_4a572"]
-[ext_resource type="PackedScene" uid="uid://0h1nedbhb7xp" path="res://Scenes/UI/Inventory/Player Inventory Handler.tscn" id="18_qkwql"]
+[ext_resource type="PackedScene" uid="uid://0h1nedbhb7xp" path="res://Scenes/UI/Inventory/Player Dashboard.tscn" id="18_qkwql"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tykb7"]
 
@@ -27,7 +27,7 @@
 script = ExtResource("15_hj0kg")
 skill = ExtResource("16_kdfxq")
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("input_controller", "player_inventory", "player_equipment", "player_weapon_controller", "combatant", "skill_handler", "player_inventory_handler")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("input_controller", "player_inventory", "player_equipment", "player_weapon_controller", "combatant", "skill_handler", "player_dashboard")]
 script = ExtResource("1_2gtyk")
 input_controller = NodePath("PlayerInputController")
 player_inventory = NodePath("Player Inventory")
@@ -35,7 +35,7 @@ player_equipment = NodePath("PlayerEquipmentInventory")
 player_weapon_controller = NodePath("PlayerWeaponController")
 combatant = NodePath("Combatant")
 skill_handler = NodePath("PlayerSkillHandler")
-player_inventory_handler = NodePath("Player Inventory Handler")
+player_dashboard = NodePath("Player Dashboard")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_tykb7")
@@ -127,4 +127,4 @@ texture = ExtResource("5_mi3j4")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Player Inventory Handler" parent="." instance=ExtResource("18_qkwql")]
+[node name="Player Dashboard" parent="." instance=ExtResource("18_qkwql")]

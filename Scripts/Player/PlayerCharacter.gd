@@ -16,7 +16,7 @@ class_name PlayerCharacter extends CharacterBody3D
 
 @export var skill_handler: SkillHandler
 
-@export var player_inventory_handler: PlayerInventoryHandler
+@export var player_dashboard: PlayerDashboard
 
 func _ready() -> void:
 	input_controller.player_character = self
@@ -33,11 +33,11 @@ func initialize_inventory() -> void:
 	slot_data.quantity    = 1
 	player_inventory.add_slot_data(slot_data)
 	
-	player_inventory_handler.setup(
+	player_dashboard.setup(
 		input_controller,
 		player_inventory,
 		player_equipment
 	)
 
 func is_inventory_open() -> bool:
-	return player_inventory_handler.visible == true
+	return player_dashboard.visible == true
