@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://td8u1okfyyrt"]
+[gd_scene load_steps=23 format=3 uid="uid://td8u1okfyyrt"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerCharacter.gd" id="1_2gtyk"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerLocomotionController.gd" id="1_v0xoa"]
 [ext_resource type="Script" path="res://Scripts/Player/Locomotion States/PLGround.gd" id="2_gpyyp"]
+[ext_resource type="Script" path="res://Scripts/Components/SkinHandler.gd" id="2_qusw3"]
 [ext_resource type="Script" path="res://Scripts/Player/Locomotion States/PLAir.gd" id="3_b8d7e"]
 [ext_resource type="Script" path="res://Scripts/Player/CameraController.gd" id="4_ga55h"]
 [ext_resource type="Texture2D" uid="uid://q5k7p2dcfw1f" path="res://Imported Assets/KenneyNL Crosshairs/crosshair019.png" id="5_mi3j4"]
@@ -40,12 +41,13 @@ player_dashboard = NodePath("Player Dashboard")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_tykb7")
 
-[node name="GFX" type="Node3D" parent="."]
+[node name="SkinHandler" type="Node3D" parent="."]
+script = ExtResource("2_qusw3")
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="GFX"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="SkinHandler"]
 mesh = SubResource("CapsuleMesh_n4s2l")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="GFX/CSGMesh3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="SkinHandler/CSGMesh3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.638788, -0.4)
 size = Vector3(0.25, 0.25, 1)
 
@@ -60,8 +62,6 @@ script = ExtResource("2_gpyyp")
 
 [node name="PLAir" type="Node" parent="PlayerLocomotionController"]
 script = ExtResource("3_b8d7e")
-acceleration = 20.0
-friction = 20.0
 
 [node name="CameraController" type="SpringArm3D" parent="." node_paths=PackedStringArray("aim_cast")]
 spring_length = 4.0

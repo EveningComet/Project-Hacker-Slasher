@@ -4,32 +4,34 @@ class_name PLGround extends PLState
 func enter(msgs: Dictionary = {}) -> void:
 	match msgs:
 		{'velocity': var v}:
-			velocity = v
+			_velocity = v
+	#
+	#_skin_handler.animation_tree["parameters/locomotion/playback"].travel("movement")
 
 func exit() -> void:
-	velocity = Vector3.ZERO
+	_velocity = Vector3.ZERO
 
 func handle_move(delta: float) -> void:
-	apply_movement( delta )
-	apply_friction( delta )
-	cb.set_velocity( velocity )
-	cb.move_and_slide()
+	_apply_movement( delta )
+	_apply_friction( delta )
+	_cb.set_velocity( _velocity )
+	_cb.move_and_slide()
 	
-	if cb.is_on_floor() == true and input_controller.jump_pressed == true:
-		my_state_machine.change_to_state("PLAir", {velocity = velocity, "max_jump_velocity" = max_jump_velocity})
+	if _cb.is_on_floor() == true and _input_controller.jump_pressed == true:
+		my_state_machine.change_to_state("PLAir", {"velocity" = _velocity, "jumping" = true})
 		return
 	
-	if cb.is_on_floor() == false:
-		my_state_machine.change_to_state("PLAir", {velocity = velocity})
+	if _cb.is_on_floor() == false:
+		my_state_machine.change_to_state("PLAir", {"velocity" = _velocity})
 		return
 	
 	orient_to_face_camera_direction(my_state_machine.camera_controller, delta)
+	_handle_animations( delta )
 
-func apply_movement(delta: float) -> void:
-	if input_dir != Vector3.ZERO:
-		velocity.x = velocity.move_toward(input_dir * move_speed, acceleration * delta).x
-		velocity.z = velocity.move_toward(input_dir * move_speed, acceleration * delta).z
-
-func apply_friction(delta: float) -> void:
-	if input_dir == Vector3.ZERO:
-		velocity = velocity.move_toward(Vector3.ZERO, friction * delta)
+func _handle_animations(delta: float) -> void:
+	# Modify the input based on the facing direction
+	var modified_dir = _velocity * _cb.transform.basis
+	#_skin_handler.animation_tree.set(
+		#"parameters/locomotion/movement/blend_position",
+		#Vector2(modified_dir.x, -modified_dir.z) / move_speed
+	#)

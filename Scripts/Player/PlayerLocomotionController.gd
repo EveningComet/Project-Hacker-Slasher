@@ -3,12 +3,12 @@ class_name PlayerLocomotionController extends StateMachine
 
 @export var input_controller:  PlayerInputController
 @export var camera_controller: CameraController
+@onready var skin_handler: SkinHandler = get_parent().get_node("SkinHandler")
 
 ## The character body of the attached parent object.
-var cb: CharacterBody3D
+@onready var cb: CharacterBody3D = get_parent()
 
 func set_me_up() -> void:
-	cb = get_parent()
 	super()
 
 func _physics_process(delta: float) -> void:
