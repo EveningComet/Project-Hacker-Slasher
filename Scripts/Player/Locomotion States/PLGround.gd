@@ -5,8 +5,8 @@ func enter(msgs: Dictionary = {}) -> void:
 	match msgs:
 		{'velocity': var v}:
 			_velocity = v
-	#
-	#_skin_handler.animation_tree["parameters/locomotion/playback"].travel("movement")
+	
+	_skin_handler.animation_tree["parameters/locomotion/playback"].travel("movement")
 
 func exit() -> void:
 	_velocity = Vector3.ZERO
@@ -31,7 +31,7 @@ func handle_move(delta: float) -> void:
 func _handle_animations(delta: float) -> void:
 	# Modify the input based on the facing direction
 	var modified_dir = _velocity * _cb.transform.basis
-	#_skin_handler.animation_tree.set(
-		#"parameters/locomotion/movement/blend_position",
-		#Vector2(modified_dir.x, -modified_dir.z) / move_speed
-	#)
+	_skin_handler.animation_tree.set(
+		"parameters/locomotion/movement/blend_position",
+		Vector2(modified_dir.x, -modified_dir.z) / move_speed
+	)

@@ -5,8 +5,8 @@ class_name CameraController extends SpringArm3D
 
 ## The node where the player is stored.
 @export var player_path: NodePath
+@export var offset: Vector3 = Vector3(0, 2, 0)
 var target: Node3D
-var offset: Vector3 = Vector3(0, 1.5, 0)
 
 var mouse_sensitivity:      float = 0.1 # TODO: Clamp this between 0.1 and 1. Also, make this a global setting.
 var controller_sensitivity: float = 2.5 # TODO: Make this a global setting.

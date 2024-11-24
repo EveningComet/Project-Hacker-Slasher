@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://d1tvlwlq8tgkg"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=4 format=3 uid="uid://d1tvlwlq8tgkg"]
 
-[ext_resource type="PackedScene" uid="uid://du70xhl6s6tca" path="res://Scenes/Weapons/Projectiles/Blaster Bolt.tscn" id="1_ipj2w"]
+[ext_resource type="PackedScene" uid="uid://du70xhl6s6tca" path="res://Scenes/Weapon Models/Projectiles/Blaster Bolt.tscn" id="1_ipj2w"]
 [ext_resource type="Script" path="res://Scripts/Weapon/WeaponData.gd" id="1_ymy0q"]
+[ext_resource type="Script" path="res://Scripts/Stats/StatModifier.gd" id="3_khtkt"]
 
 [resource]
 script = ExtResource("1_ymy0q")
@@ -12,10 +13,10 @@ ammo_per_mag = 30
 num_shots = 1
 spread = Vector2(50, 25)
 projectile_prefab = ExtResource("1_ipj2w")
-localization_name = "New Item"
-localization_description = "An item."
+localization_name = "Blaster"
+localization_description = "A blaster rifle."
 item_type = 0
 max_stack_size = 1
-equip_type = 0
-stat_modifiers = Array[Resource("res://Scripts/Stats/StatModifier.gd")]([])
-weapon_type = 0
+equip_type = 1
+stat_modifiers = Array[ExtResource("3_khtkt")]([])
+weapon_type = 4

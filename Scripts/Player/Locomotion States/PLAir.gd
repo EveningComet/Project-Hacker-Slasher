@@ -24,13 +24,12 @@ func enter(msgs: Dictionary = {}) -> void:
 		{'velocity': var v, 'jumping': var mjv}:
 			_velocity   = v
 			_velocity.y = _max_jump_velocity
-			# TODO: Jumping animation.
+			_skin_handler.animation_tree["parameters/locomotion/playback"].travel("jump")
 		
 		# Entered from falling
 		{'velocity': var v}:
 			_velocity = v
-	
-	#_skin_handler.animation_tree["parameters/locomotion/playback"].travel("falling")
+			_skin_handler.animation_tree["parameters/locomotion/playback"].travel("falling")
 
 func exit() -> void:
 	_velocity = Vector3.ZERO

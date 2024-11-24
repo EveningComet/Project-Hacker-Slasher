@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SkillData" load_steps=7 format=3 uid="uid://wm3iprglyfqg"]
 
-[ext_resource type="PackedScene" uid="uid://du70xhl6s6tca" path="res://Scenes/Weapons/Projectiles/Blaster Bolt.tscn" id="1_ctiig"]
+[ext_resource type="PackedScene" uid="uid://du70xhl6s6tca" path="res://Scenes/Weapon Models/Projectiles/Blaster Bolt.tscn" id="1_ctiig"]
 [ext_resource type="Script" path="res://Scripts/Skills/SkillData.gd" id="1_g58ei"]
 [ext_resource type="Texture2D" uid="uid://di5jm1g541jpr" path="res://icon.svg" id="1_wngb7"]
 [ext_resource type="Script" path="res://Scripts/Skills/Skill Effects/SpawnProjectileEffect.gd" id="2_1vg5i"]

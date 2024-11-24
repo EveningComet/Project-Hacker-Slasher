@@ -4,14 +4,14 @@
 [ext_resource type="Script" path="res://Scripts/Player/PlayerLocomotionController.gd" id="1_v0xoa"]
 [ext_resource type="Script" path="res://Scripts/Player/Locomotion States/PLGround.gd" id="2_gpyyp"]
 [ext_resource type="Script" path="res://Scripts/Components/SkinHandler.gd" id="2_qusw3"]
+[ext_resource type="PackedScene" uid="uid://c4x5gbottwa6w" path="res://Scenes/Characters/Models/Male Base Mesh.tscn" id="3_506br"]
 [ext_resource type="Script" path="res://Scripts/Player/Locomotion States/PLAir.gd" id="3_b8d7e"]
 [ext_resource type="Script" path="res://Scripts/Player/CameraController.gd" id="4_ga55h"]
+[ext_resource type="Resource" uid="uid://d1tvlwlq8tgkg" path="res://Game Data/Weapon Data/Guns/Blaster.tres" id="5_6n028"]
 [ext_resource type="Texture2D" uid="uid://q5k7p2dcfw1f" path="res://Imported Assets/KenneyNL Crosshairs/crosshair019.png" id="5_mi3j4"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerWeaponController.gd" id="6_2pjp6"]
 [ext_resource type="Script" path="res://Scripts/Components/Combatant.gd" id="7_3s4vf"]
-[ext_resource type="PackedScene" uid="uid://bvri232d45cau" path="res://Scenes/Weapons/Guns/Assault Rifle.tscn" id="8_n0lqw"]
-[ext_resource type="PackedScene" uid="uid://ct8sefua313wr" path="res://Scenes/Weapons/Melee/Mehrauser Sword.tscn" id="10_k3hhy"]
-[ext_resource type="PackedScene" uid="uid://b2xjy0s54sgw3" path="res://Scenes/Weapons/Guns/Blaster.tscn" id="10_qdf8c"]
+[ext_resource type="PackedScene" uid="uid://b2xjy0s54sgw3" path="res://Scenes/Weapon Models/Guns/Blaster Rifle.tscn" id="10_qdf8c"]
 [ext_resource type="Script" path="res://Scripts/Inventory/Inventory.gd" id="11_hg3lk"]
 [ext_resource type="Script" path="res://Scripts/Inventory/PlayerEquipmentInventory.gd" id="13_il0p0"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerSkillHandler.gd" id="14_8t3ud"]
@@ -22,7 +22,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tykb7"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_n4s2l"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_q6tv6"]
 
 [sub_resource type="Resource" id="Resource_6oe71"]
 script = ExtResource("15_hj0kg")
@@ -39,17 +39,39 @@ skill_handler = NodePath("PlayerSkillHandler")
 player_dashboard = NodePath("Player Dashboard")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_tykb7")
 
 [node name="SkinHandler" type="Node3D" parent="."]
 script = ExtResource("2_qusw3")
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="SkinHandler"]
-mesh = SubResource("CapsuleMesh_n4s2l")
+[node name="Male Base Mesh" parent="SkinHandler" instance=ExtResource("3_506br")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="SkinHandler/CSGMesh3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.638788, -0.4)
-size = Vector3(0.25, 0.25, 1)
+[node name="original" parent="SkinHandler/Male Base Mesh" index="0"]
+transform = Transform3D(0.994575, 0.057666, -0.0865874, -0.0513531, 0.995975, 0.0734474, 0.0904745, -0.0686023, 0.993533, -0.0609101, 0.0164307, 0.0768927)
+
+[node name="Skeleton3D" parent="SkinHandler/Male Base Mesh/original" index="0"]
+bones/1/rotation = Quaternion(-0.0848334, 0.0114575, 0.0174337, 0.996177)
+bones/3/rotation = Quaternion(0.361941, -0.00150551, 0.00339496, 0.932194)
+bones/4/rotation = Quaternion(-0.110262, -0.00102889, 0.00406826, 0.993894)
+bones/51/rotation = Quaternion(0.96038, 0.0722229, -0.142544, 0.228332)
+bones/52/rotation = Quaternion(0.181302, -0.00919989, -0.0124989, 0.983305)
+bones/53/rotation = Quaternion(-0.604944, -0.0857523, -0.0234808, 0.791289)
+bones/55/rotation = Quaternion(0.985956, 0.0215141, 0.0834871, 0.143032)
+bones/56/rotation = Quaternion(0.139001, 0.0813183, 0.00251006, 0.986945)
+bones/57/rotation = Quaternion(-0.643852, 0.0784063, 0.0565954, 0.759015)
+bones/58/rotation = Quaternion(0.0765325, 0.969132, -0.233659, -0.0181506)
+
+[node name="BoneAttachment3D" parent="SkinHandler/Male Base Mesh/original/Skeleton3D" index="0"]
+transform = Transform3D(0.225121, -0.318047, 0.920959, 0.232997, -0.900225, -0.367841, 0.946061, 0.29739, -0.128556, -0.592555, 1.03902, 0.0863254)
+
+[node name="Blaster" parent="SkinHandler/Male Base Mesh/original/Skeleton3D/BoneAttachment3D/Weapon Hold Pos" index="0" instance=ExtResource("10_qdf8c")]
+transform = Transform3D(0.58876, 0.642978, -0.489837, -0.57423, -0.0937865, -0.813305, -0.568877, 0.76012, 0.314, 0.0155308, 0.00916888, -0.0205303)
+weapon_data = ExtResource("5_6n028")
+
+[node name="AnimationTree" parent="SkinHandler/Male Base Mesh" index="2"]
+"parameters/upper body/rifle/blend_position" = Vector2(0, 0)
 
 [node name="PlayerLocomotionController" type="Node" parent="." node_paths=PackedStringArray("input_controller", "camera_controller")]
 script = ExtResource("1_v0xoa")
@@ -64,7 +86,9 @@ script = ExtResource("2_gpyyp")
 script = ExtResource("3_b8d7e")
 
 [node name="CameraController" type="SpringArm3D" parent="." node_paths=PackedStringArray("aim_cast")]
-spring_length = 4.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+shape = SubResource("SphereShape3D_q6tv6")
+spring_length = 3.0
 margin = 0.2
 script = ExtResource("4_ga55h")
 aim_cast = NodePath("Camera3D/Aim Cast")
@@ -76,25 +100,15 @@ current = true
 [node name="Aim Cast" type="RayCast3D" parent="CameraController/Camera3D"]
 target_position = Vector3(0, 0, -1000)
 
-[node name="PlayerWeaponController" type="Node" parent="." node_paths=PackedStringArray("camera_controller", "current_weapon", "player_equipment")]
+[node name="PlayerWeaponController" type="Node" parent="." node_paths=PackedStringArray("camera_controller", "current_weapon", "player_equipment", "_skin_handler")]
 script = ExtResource("6_2pjp6")
 camera_controller = NodePath("../CameraController")
-current_weapon = NodePath("../Weapon Holder/Blaster")
+current_weapon = NodePath("../SkinHandler/Male Base Mesh/original/Skeleton3D/BoneAttachment3D/Weapon Hold Pos/Blaster")
 player_equipment = NodePath("../PlayerEquipmentInventory")
+_skin_handler = NodePath("../SkinHandler")
 
 [node name="Combatant" type="Node" parent="."]
 script = ExtResource("7_3s4vf")
-
-[node name="Weapon Holder" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.666559, 0, 0)
-
-[node name="Assault Rifle" parent="Weapon Holder" instance=ExtResource("8_n0lqw")]
-visible = false
-
-[node name="Blaster" parent="Weapon Holder" instance=ExtResource("10_qdf8c")]
-
-[node name="Mehrasaur Sword" parent="Weapon Holder" instance=ExtResource("10_k3hhy")]
-visible = false
 
 [node name="Player Inventory" type="Node" parent="."]
 script = ExtResource("11_hg3lk")
@@ -128,3 +142,5 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Player Dashboard" parent="." instance=ExtResource("18_qkwql")]
+
+[editable path="SkinHandler/Male Base Mesh"]

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="WeaponData" load_steps=4 format=3 uid="uid://6u3tbu8dp8sx"]
 
 [ext_resource type="Script" path="res://Scripts/Weapon/WeaponData.gd" id="1_hdc37"]
-[ext_resource type="PackedScene" uid="uid://dllqq31j7h51a" path="res://Scenes/Weapons/Bullet Hole.tscn" id="1_tmmoj"]
+[ext_resource type="PackedScene" uid="uid://dllqq31j7h51a" path="res://Scenes/Weapon Models/Bullet Hole.tscn" id="1_tmmoj"]
 [ext_resource type="PackedScene" uid="uid://ddw8djsnirgkr" path="res://Imported Assets/Models/KenneyNL Blaster Kit/blasterD.glb" id="2_6sl2v"]
 
 [resource]
